@@ -25,7 +25,7 @@ public class ConnectionManager implements IConnectionManager {
     @Override
     public boolean Connect() {
         try {
-            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@c5.base-cloud.xyz:1521:FREE", "MTR", "Dev$2024");
+            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "P4Proyec", "Dev2024");
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,7 +11,7 @@ package app.pos.entities;
 public class Cliente extends Persona{
     
     private int idCliente;
-    private String estado;
+    private int estado;
 
     public int getIdCliente() {
         return idCliente;
@@ -21,11 +21,11 @@ public class Cliente extends Persona{
         this.idCliente = idCliente;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
@@ -36,7 +36,7 @@ public class Cliente extends Persona{
         this.idCliente = idCliente;
     }
 
-   public Cliente(int idPersona, TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellidos, String correo, String telefono, String estado, int idCliente) {
+   public Cliente( int idCliente, int idPersona, int estado, String identificacion, String nombre, String apellidos, String correo, String telefono, TipoIdentificacion tipoIdentificacion) {
         super(idPersona, tipoIdentificacion, identificacion, nombre, apellidos, correo, telefono);
         this.idCliente = idCliente;
         this.estado = estado;

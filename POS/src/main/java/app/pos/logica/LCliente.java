@@ -32,19 +32,20 @@ public class LCliente {
                 try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_listar_cliente(?)}", parametros)) {
                     while (resultado.next()) {
                         clientes.add(new Cliente(
+                                resultado.getInt("id_cliente"),
                                 resultado.getInt("id_persona"),
-                                new TipoIdentificacion(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("tipo_identificacion"),
-                                        resultado.getString("mascara")
-                                ),
+                                resultado.getInt("estado"),
                                 resultado.getString("identificacion"),
                                 resultado.getString("nombre"),
                                 resultado.getString("apellidos"),
                                 resultado.getString("correo"),
                                 resultado.getString("telefono"),
-                                resultado.getString("estado"),
-                                resultado.getInt("id_cliente")
+                                new TipoIdentificacion(
+                                        resultado.getInt("id_tipo_identificacion"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("mascara")
+                                )
+                                
                         ));
                     }
                 }
@@ -66,20 +67,20 @@ public class LCliente {
                 try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_cliente_id(?,?)}", parametros)) {
                     if (resultado.next()) {
                         cliente = new Cliente(
+                                resultado.getInt("id_cliente"),
                                 resultado.getInt("id_persona"),
-                                new TipoIdentificacion(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("tipo_identificacion"),
-                                        resultado.getString("mascara")
-                                ),
+                                resultado.getInt("estado"),
                                 resultado.getString("identificacion"),
                                 resultado.getString("nombre"),
                                 resultado.getString("apellidos"),
                                 resultado.getString("correo"),
                                 resultado.getString("telefono"),
-                                resultado.getString("estado"),
-                                resultado.getInt("id_cliente")
-                        
+                                new TipoIdentificacion(
+                                        resultado.getInt("id_tipo_identificacion"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("mascara")
+                                )
+                                
                         );
                     }
                 }
@@ -101,20 +102,20 @@ public class LCliente {
                 try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_cliente_identificacion(?,?)}", parametros)) {
                     if (resultado.next()) {
                         cliente = new Cliente(
+                                resultado.getInt("id_cliente"),
                                 resultado.getInt("id_persona"),
-                                new TipoIdentificacion(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("tipo_identificacion"),
-                                        resultado.getString("mascara")
-                                ),
+                                resultado.getInt("estado"),
                                 resultado.getString("identificacion"),
                                 resultado.getString("nombre"),
                                 resultado.getString("apellidos"),
                                 resultado.getString("correo"),
                                 resultado.getString("telefono"),
-                                resultado.getString("estado"),
-                                resultado.getInt("id_cliente")
-                        
+                                new TipoIdentificacion(
+                                        resultado.getInt("id_tipo_identificacion"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("mascara")
+                                )
+                                
                         );
                     }
                 }
