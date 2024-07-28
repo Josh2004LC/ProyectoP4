@@ -10,7 +10,7 @@ package app.pos.entities;
  */
 import java.util.Date;
 
-public class Persona {
+public class Persona extends TipoIdentificacion{
     private int idPersona;
     private TipoIdentificacion tipoIdentificacion;
     private String identificacion;

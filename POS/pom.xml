@@ -13,10 +13,33 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <mainClass>com.mycompany.pos.POS</mainClass>
+                <arguments>
+                    <argument>-X</argument> <!-- Añadir esto para más detalles -->
+                </arguments>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>com.mycompany.pos.POS</exec.mainClass>
+        <exec.mainClass>com.mycompany.pos.app,principal.Principal</exec.mainClass>
     </properties>
 </project>

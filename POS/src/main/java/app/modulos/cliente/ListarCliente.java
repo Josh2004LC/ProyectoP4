@@ -139,14 +139,12 @@ public class ListarCliente extends javax.swing.JFrame {
         ArrayList<Cliente> clientes = new LCliente().Listar();
         
         String[] columnas = new String[]{
-            "N° Profesor",
+            "ID",
             "Tipo Identificación",
             "Identificación",
             "Nombre",
-            "Teléfono",
             "Correo",
-            "Dirección",
-            "Profesión",
+            "Teléfono",
             "Estado"
         };
         
@@ -158,8 +156,8 @@ public class ListarCliente extends javax.swing.JFrame {
                 cliente.getTipoIdentificacion().getNombre(),
                 cliente.getIdentificacion(),
                 cliente.getNombre() + " " + cliente.getApellidos(),
-                cliente.getTelefono(),
                 cliente.getCorreo(),
+                cliente.getTelefono(),
                 this.ObtenerEstado(cliente.getEstado())
             });
         }
@@ -167,36 +165,32 @@ public class ListarCliente extends javax.swing.JFrame {
         this.tbClientes.setModel(obModelo);
     }
     
-    private void CargarTabla(ArrayList<Profesor> profesores) {
+    private void CargarTabla(ArrayList<Cliente> clientes) {
         String[] columnas = new String[]{
-            "N° Profesor",
+           "ID",
             "Tipo Identificación",
             "Identificación",
             "Nombre",
-            "Teléfono",
             "Correo",
-            "Dirección",
-            "Profesión",
+            "Teléfono",
             "Estado"
         };
         
         DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
         
-        for (Profesor profesor : profesores) {
+        for (Cliente cliente : clientes) {
             obModelo.addRow(new Object[]{
-                profesor.getIdProfesor()+ "",
-                profesor.getTipoIdentificacion().getNombre(),
-                profesor.getIdentificacion(),
-                profesor.getNombre() + " " + profesor.getApellidos(),
-                profesor.getTelefono(),
-                profesor.getCorreo(),
-                profesor.getDireccion(),
-                profesor.getProfesion(),
-                this.ObtenerEstado(profesor.getEstado())
+                cliente.getIdCliente()+ "",
+                cliente.getTipoIdentificacion().getNombre(),
+                cliente.getIdentificacion(),
+                cliente.getNombre() + " " + cliente.getApellidos(),
+                cliente.getCorreo(),
+                cliente.getTelefono(),
+                this.ObtenerEstado(cliente.getEstado())
             });
         }
         
-        this.tbProfesores.setModel(obModelo);
+        this.tbClientes.setModel(obModelo);
     }
     
     private String ObtenerEstado(String estado) {
@@ -214,11 +208,11 @@ public class ListarCliente extends javax.swing.JFrame {
         // Validar el texto a buscar
         if (!valor.isEmpty() && !valor.isBlank()) {
             // Cargar empleados
-            ArrayList<Profesor> profesores = new LProfesor().Listar();
+            ArrayList<Cliente> clientes = new LCliente().Listar();
 
-            if (profesores != null && !profesores.isEmpty()) {
-                List<Profesor> finales = profesores.stream()
-                        .filter(emp -> (emp.getIdProfesor()+ "").contains(valor)
+            if (clientes != null && !clientes.isEmpty()) {
+                List<Cliente> finales = clientes.stream()
+                        .filter(emp -> (emp.getIdCliente()+ "").contains(valor)
                         || emp.getTipoIdentificacion().getNombre().trim().toLowerCase().contains(valor)
                         || emp.getIdentificacion().trim().toLowerCase().contains(valor)
                         || emp.getNombre().trim().toLowerCase().contains(valor)
@@ -226,10 +220,9 @@ public class ListarCliente extends javax.swing.JFrame {
                         || emp.getTelefono().trim().toLowerCase().contains(valor)
                         || emp.getCorreo().trim().toLowerCase().contains(valor)
                         || emp.getEstado().trim().toLowerCase().contains(valor)
-                        || emp.getProfesion().trim().toLowerCase().contains(valor)
                         ).collect(Collectors.toList());
 
-                this.CargarTabla((ArrayList<Profesor>) finales);
+                this.CargarTabla((ArrayList<Cliente>) finales);
             }
         }
     }
