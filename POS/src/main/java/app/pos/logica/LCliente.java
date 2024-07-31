@@ -7,7 +7,6 @@ package app.pos.logica;
 import app.pos.db.ConnectionManager;
 import app.pos.db.Parametro;
 import app.pos.entities.Cliente;
-import app.pos.entities.Persona;
 import app.pos.entities.TipoIdentificacion;
 import java.sql.ResultSet;
 import java.sql.SQLException;

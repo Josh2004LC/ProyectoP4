@@ -1,5 +1,6 @@
 
 import app.modulos.cliente.ActualizarCliente;
+import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
 import app.modulos.tipoIdentificacion.ListarTipoIdentificacion;
 import java.awt.Graphics;
@@ -209,7 +210,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void mRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRegistrarClienteActionPerformed
-      
+        GuardarCliente myForm = new GuardarCliente();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();      
     }//GEN-LAST:event_mRegistrarClienteActionPerformed
 
     private void mActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActualizarClienteActionPerformed
