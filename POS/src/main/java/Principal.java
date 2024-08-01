@@ -3,6 +3,8 @@ import app.modulos.cliente.ActualizarCliente;
 import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
 import app.modulos.tipoIdentificacion.ListarTipoIdentificacion;
+import app.modulos.usuario.ActualizarUsuario;
+import app.modulos.usuario.GuardarUsuario;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
@@ -10,7 +12,6 @@ import javax.swing.ImageIcon;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Josh
@@ -23,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        
+
     }
 
     /**
@@ -44,8 +45,8 @@ public class Principal extends javax.swing.JFrame {
         };
         menuBar = new javax.swing.JMenuBar();
         mInicio = new javax.swing.JMenu();
-        opUsuario = new javax.swing.JMenuItem();
-        opCurso = new javax.swing.JMenuItem();
+        mRegistrarUsuario = new javax.swing.JMenuItem();
+        mActualizarUsuario = new javax.swing.JMenuItem();
         opGrupo = new javax.swing.JMenuItem();
         opPeriodo = new javax.swing.JMenuItem();
         opCarrera = new javax.swing.JMenuItem();
@@ -72,17 +73,27 @@ public class Principal extends javax.swing.JFrame {
         mInicio.setText("Inicio");
         mInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        opUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        opUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-staff-16.png"))); // NOI18N
-        opUsuario.setMnemonic('o');
-        opUsuario.setText("Usuarios");
-        mInicio.add(opUsuario);
+        mRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mRegistrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-staff-16.png"))); // NOI18N
+        mRegistrarUsuario.setMnemonic('o');
+        mRegistrarUsuario.setText("Crear Usuario");
+        mRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+        mInicio.add(mRegistrarUsuario);
 
-        opCurso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        opCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-invert-files-selection-16.png"))); // NOI18N
-        opCurso.setMnemonic('s');
-        opCurso.setText("Cursos");
-        mInicio.add(opCurso);
+        mActualizarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mActualizarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-staff-16.png"))); // NOI18N
+        mActualizarUsuario.setMnemonic('s');
+        mActualizarUsuario.setText("Actualizar Usuario");
+        mActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mActualizarUsuarioActionPerformed(evt);
+            }
+        });
+        mInicio.add(mActualizarUsuario);
 
         opGrupo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         opGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-user-groups-16.png"))); // NOI18N
@@ -197,7 +208,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleName("Principal");
@@ -216,14 +227,14 @@ public class Principal extends javax.swing.JFrame {
                 (panelPrincipal.getSize().height - myForm.getSize().height) / 2
         );
         this.panelPrincipal.add(myForm);
-        myForm.show();      
+        myForm.show();
     }//GEN-LAST:event_mRegistrarClienteActionPerformed
 
     private void mActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActualizarClienteActionPerformed
         ActualizarCliente myForm = new ActualizarCliente();
         myForm.setLocation(
-            (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
-            (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
         );
         this.panelPrincipal.add(myForm);
         myForm.show();
@@ -232,21 +243,39 @@ public class Principal extends javax.swing.JFrame {
     private void mListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mListarClientesActionPerformed
         ListarCliente myForm = new ListarCliente();
         myForm.setLocation(
-            (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
-            (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
         );
         this.panelPrincipal.add(myForm);
         myForm.show();
     }//GEN-LAST:event_mListarClientesActionPerformed
+
+    private void mRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRegistrarUsuarioActionPerformed
+        GuardarUsuario myForm = new GuardarUsuario();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_mRegistrarUsuarioActionPerformed
+
+    private void mActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActualizarUsuarioActionPerformed
+        ActualizarUsuario myForm = new ActualizarUsuario();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_mActualizarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Create and display the form */
-        
-       
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Principal().setVisible(true);
@@ -262,18 +291,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenuItem mActualizarCliente;
+    private javax.swing.JMenuItem mActualizarUsuario;
     private javax.swing.JMenu mClientes;
     private javax.swing.JMenu mEstudiante;
     private javax.swing.JMenu mInicio;
     private javax.swing.JMenuItem mListarClientes;
     private javax.swing.JMenu mMatricula;
     private javax.swing.JMenuItem mRegistrarCliente;
+    private javax.swing.JMenuItem mRegistrarUsuario;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem opCarrera;
-    private javax.swing.JMenuItem opCurso;
     private javax.swing.JMenuItem opGrupo;
     private javax.swing.JMenuItem opPeriodo;
-    private javax.swing.JMenuItem opUsuario;
     private javax.swing.JDesktopPane panelPrincipal;
     private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables

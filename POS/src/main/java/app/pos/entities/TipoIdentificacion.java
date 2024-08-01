@@ -9,7 +9,7 @@ package app.pos.entities;
  * @author Josh
  */
 
-public class TipoIdentificacion {
+public class TipoIdentificacion{
     private int idTipoIdentificacion;
     private String nombre;
     private String mascara;
@@ -44,6 +44,7 @@ public class TipoIdentificacion {
     public TipoIdentificacion(int idTipoIdentificacion) {
         this.idTipoIdentificacion = idTipoIdentificacion;
     }
+    
 
     public TipoIdentificacion(int idTipoIdentificacion, String nombre, String mascara) {
         this.idTipoIdentificacion = idTipoIdentificacion;
