@@ -81,7 +81,7 @@ public class LUsuario {
                                         resultado.getInt("estado")
                                 ),
                                 resultado.getString("useraccess"),
-                                resultado.getString("passwordd"),
+                                resultado.getString("password"),
                                 resultado.getInt("estado"),
                                 resultado.getString("identificacion"),
                                 resultado.getString("nombre"),
@@ -118,12 +118,12 @@ public class LUsuario {
                                 resultado.getInt("id_usuario"),
                                 resultado.getInt("id_persona"),
                                 new TipoUsuario(
-                                        resultado.getInt("id_tipo_identificacion"),
+                                        resultado.getInt("id_tipo_usuario"),
                                         resultado.getString("nombre"),
                                         resultado.getInt("estado")
                                 ),
                                 resultado.getString("useraccess"),
-                                resultado.getString("passwordd"),
+                                resultado.getString("password"),
                                 resultado.getInt("estado"),
                                 resultado.getString("identificacion"),
                                 resultado.getString("nombre"),
@@ -159,7 +159,7 @@ public class LUsuario {
                 parametros.add(new Parametro<>("p_telefono", usuario.getTelefono(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_id_tipo_usuario", usuario.getTipoUsuario().getIdTipoUsuario(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_useraccess", usuario.getUseraccess(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_password", usuario.getPasswordd(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_passwordd", usuario.getPasswordd(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_estado", usuario.getEstado(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_respuesta", null, Types.INTEGER, true));
                 return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_guardar_usuario(?,?,?,?,?,?,?,?,?,?,?)}", parametros);
@@ -185,7 +185,7 @@ public class LUsuario {
                 parametros.add(new Parametro<>("p_telefono", usuario.getTelefono(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_id_tipo_usuario", usuario.getTipoUsuario().getIdTipoUsuario(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_useraccess", usuario.getUseraccess(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_password", usuario.getPasswordd(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_passwordd", usuario.getPasswordd(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_estado", usuario.getEstado(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_respuesta", null, Types.INTEGER, true));
                 return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_actualizar_usuario(?,?,?,?,?,?,?,?,?,?,?,?)}", parametros);

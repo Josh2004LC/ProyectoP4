@@ -181,13 +181,15 @@
                       <Component id="txtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lbRequeridoTipoIdentificacion6" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbApellidos1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbRequeridoTipoIdentificacion7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbApellidos1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbRequeridoTipoIdentificacion7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -198,9 +200,9 @@
                       <Component id="lbRequeridoTipoIdentificacion8" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnGuardar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>

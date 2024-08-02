@@ -26,11 +26,13 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
     private ArrayList<TipoUsuario> tiposUsuario;
     private TipoUsuario tipoU;
     private Usuario usuario;
+    private int TipoUsuarioid;
     
     public ActualizarUsuario() {
         initComponents();
         CargarTipoIdentificacion();
         CargarTipoUsuario();   
+        CargarEstado();
     }
 
      private void CargarTipoIdentificacion() {
@@ -41,6 +43,7 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             }
         }
     }
+     
      private void CargarTipoUsuario() {
         this.tiposUsuario = new LTipoUsuario().Listar();
         if (this.tiposUsuario != null && !this.tiposUsuario.isEmpty()) {
@@ -49,6 +52,15 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             }
         }
     }
+     
+      private void CargarEstado() {
+        this.cbxEstado.addItem("Activo");
+        this.cbxEstado.addItem("Inactivo");
+
+    }
+      
+      
+      
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -170,9 +182,8 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
         lbTituloFormulario1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbTituloFormulario1.setText("Buscar usuario:");
 
-        txtIdentificacion.setEditable(false);
         try {
-            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -190,7 +201,12 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el estado del cliente" }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el estado del usuario" }));
+        cbxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEstadoActionPerformed(evt);
+            }
+        });
 
         try {
             txtIdentificacionBuscar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
@@ -212,6 +228,11 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
         lbRequeridoTipoIdentificacion8.setText("*");
 
         cbxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de usuario" }));
+        cbxTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipoUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Usuario:");
 
@@ -421,7 +442,7 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             
             this.cbxTipoIdentificacion.setSelectedItem(this.usuario.getTipoIdentificacion().getNombre());
             this.cbxTipoIdentificacion.setEditable(true);
-            this.cbxTipoUsuario.setSelectedItem(this.usuario.getTipoUsuario().getNombre());
+            TipoUsuarioid = this.usuario.getTipoUsuario().getIdTipoUsuario();
             this.cbxTipoUsuario.setEditable(true);
             this.txtIdentificacion.setText(this.usuario.getIdentificacion());
             this.txtIdentificacion.setEditable(false);
@@ -433,6 +454,10 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             this.txtCorreo.setEditable(true);
             this.txtTelefono.setText(this.usuario.getTelefono());
             this.txtTelefono.setEditable(true);
+            this.txtUsuario.setText(this.usuario.getUseraccess());
+            this.txtUsuario.setEditable(true);
+            this.txtContrasena.setText(this.usuario.getPasswordd());
+            this.txtContrasena.setEditable(true);
             this.txtIdentificacionBuscar.setText("");
             this.btnGuardar.setEnabled(true);
         } else {
@@ -507,6 +532,12 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             return;
         }
 
+        if (this.cbxTipoUsuario.getSelectedItem() == null || this.cbxTipoUsuario.getSelectedItem().toString().equals("Seleccione un tipo de usuario")) {
+            JOptionPane.showMessageDialog(this, "El tipo de usuario es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            this.cbxTipoUsuario.requestFocus();
+            return;
+        }
+        
         int operacion = new LUsuario().Actualizar(new Usuario(
             usuario.getIdUsuario(),
             usuario.getIdPersona(),
@@ -526,8 +557,8 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Se completó la actualización correctamente.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             this.LimpiarFormulario();
         } else {
-            JOptionPane.showMessageDialog(this, "No se pudo completar la actualización del cliente,"
-                + " intente nuevamente, verifique que exista el cliente ingresado.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se pudo completar la actualización del usuario,"
+                + " intente nuevamente, verifique que exista el usuario ingresado.", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -552,6 +583,14 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
     private void txtIdentificacionBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdentificacionBuscarActionPerformed
+
+    private void cbxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxEstadoActionPerformed
+
+    private void cbxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoUsuarioActionPerformed
+        this.tipoU = this.tiposUsuario.stream().filter(x -> x.getNombre().equals(this.cbxTipoUsuario.getSelectedItem().toString())).findFirst().orElse(null);
+    }//GEN-LAST:event_cbxTipoUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
