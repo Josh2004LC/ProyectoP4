@@ -105,6 +105,7 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
         txtContrasena = new javax.swing.JTextField();
 
         setClosable(true);
+        setIconifiable(true);
 
         lbTipoIdentificacion.setText("Tipo de identificación:");
 
@@ -182,6 +183,7 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
         lbTituloFormulario1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbTituloFormulario1.setText("Buscar usuario:");
 
+        txtIdentificacion.setEditable(false);
         try {
             txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {

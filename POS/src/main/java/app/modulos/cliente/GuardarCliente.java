@@ -77,6 +77,7 @@ public class GuardarCliente extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         lbTipoIdentificacion.setText("Tipo de identificación:");
 

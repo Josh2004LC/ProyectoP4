@@ -2,6 +2,12 @@
 import app.modulos.cliente.ActualizarCliente;
 import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
+import app.modulos.marca.ActualizarMarca;
+import app.modulos.marca.GuardarMarca;
+import app.modulos.marca.ListarMarca;
+import app.modulos.producto.ActualizarProducto;
+import app.modulos.producto.GuardarProducto;
+import app.modulos.producto.ListarProducto;
 import app.modulos.tipoIdentificacion.ListarTipoIdentificacion;
 import app.modulos.usuario.ActualizarUsuario;
 import app.modulos.usuario.GuardarUsuario;
@@ -51,11 +57,13 @@ public class Principal extends javax.swing.JFrame {
         opPeriodo = new javax.swing.JMenuItem();
         opCarrera = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        mMatricula = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
+        mInventario = new javax.swing.JMenu();
+        productosMenuItem = new javax.swing.JMenuItem();
+        agregarProductoMenuItem = new javax.swing.JMenuItem();
+        actualizarProductoMenuItem = new javax.swing.JMenuItem();
+        marcasMenuItem = new javax.swing.JMenuItem();
+        agregarMarcaMenuItem = new javax.swing.JMenuItem();
+        actualizarMarcaMenuItem = new javax.swing.JMenuItem();
         mEstudiante = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -124,28 +132,64 @@ public class Principal extends javax.swing.JFrame {
 
         menuBar.add(mInicio);
 
-        mMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-bookmark-16.png"))); // NOI18N
-        mMatricula.setMnemonic('e');
-        mMatricula.setText("Matrículas");
-        mMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-bookmark-16.png"))); // NOI18N
+        mInventario.setMnemonic('e');
+        mInventario.setText("Inventario");
+        mInventario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        mMatricula.add(cutMenuItem);
+        productosMenuItem.setMnemonic('t');
+        productosMenuItem.setText("Productos");
+        productosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productosMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(productosMenuItem);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        mMatricula.add(copyMenuItem);
+        agregarProductoMenuItem.setMnemonic('y');
+        agregarProductoMenuItem.setText("Agregar Producto");
+        agregarProductoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarProductoMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(agregarProductoMenuItem);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        mMatricula.add(pasteMenuItem);
+        actualizarProductoMenuItem.setMnemonic('p');
+        actualizarProductoMenuItem.setText("Actualizar Producto");
+        actualizarProductoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarProductoMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(actualizarProductoMenuItem);
 
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        mMatricula.add(deleteMenuItem);
+        marcasMenuItem.setMnemonic('d');
+        marcasMenuItem.setText("Marcas");
+        marcasMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcasMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(marcasMenuItem);
 
-        menuBar.add(mMatricula);
+        agregarMarcaMenuItem.setText("Agregar Marca");
+        agregarMarcaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarMarcaMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(agregarMarcaMenuItem);
+
+        actualizarMarcaMenuItem.setText("Actualizar Marca");
+        actualizarMarcaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarMarcaMenuItemActionPerformed(evt);
+            }
+        });
+        mInventario.add(actualizarMarcaMenuItem);
+
+        menuBar.add(mInventario);
 
         mEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-user-account-16.png"))); // NOI18N
         mEstudiante.setMnemonic('h');
@@ -270,6 +314,66 @@ public class Principal extends javax.swing.JFrame {
         myForm.show();
     }//GEN-LAST:event_mActualizarUsuarioActionPerformed
 
+    private void agregarProductoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoMenuItemActionPerformed
+        GuardarProducto myForm = new GuardarProducto();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_agregarProductoMenuItemActionPerformed
+
+    private void productosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosMenuItemActionPerformed
+       ListarProducto myForm = new ListarProducto();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_productosMenuItemActionPerformed
+
+    private void marcasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcasMenuItemActionPerformed
+        ListarMarca myForm = new ListarMarca();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_marcasMenuItemActionPerformed
+
+    private void agregarMarcaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMarcaMenuItemActionPerformed
+        GuardarMarca myForm = new GuardarMarca();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_agregarMarcaMenuItemActionPerformed
+
+    private void actualizarMarcaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarMarcaMenuItemActionPerformed
+        ActualizarMarca myForm = new ActualizarMarca();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_actualizarMarcaMenuItemActionPerformed
+
+    private void actualizarProductoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarProductoMenuItemActionPerformed
+       ActualizarProducto myForm = new ActualizarProducto();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_actualizarProductoMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,25 +389,27 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem actualizarMarcaMenuItem;
+    private javax.swing.JMenuItem actualizarProductoMenuItem;
+    private javax.swing.JMenuItem agregarMarcaMenuItem;
+    private javax.swing.JMenuItem agregarProductoMenuItem;
     private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenuItem mActualizarCliente;
     private javax.swing.JMenuItem mActualizarUsuario;
     private javax.swing.JMenu mClientes;
     private javax.swing.JMenu mEstudiante;
     private javax.swing.JMenu mInicio;
+    private javax.swing.JMenu mInventario;
     private javax.swing.JMenuItem mListarClientes;
-    private javax.swing.JMenu mMatricula;
     private javax.swing.JMenuItem mRegistrarCliente;
     private javax.swing.JMenuItem mRegistrarUsuario;
+    private javax.swing.JMenuItem marcasMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem opCarrera;
     private javax.swing.JMenuItem opGrupo;
     private javax.swing.JMenuItem opPeriodo;
     private javax.swing.JDesktopPane panelPrincipal;
-    private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenuItem productosMenuItem;
     // End of variables declaration//GEN-END:variables
 }

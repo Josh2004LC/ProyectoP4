@@ -106,6 +106,7 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
         cbxTipoUsuario = new javax.swing.JComboBox();
 
         setClosable(true);
+        setIconifiable(true);
 
         lbTipoIdentificacion.setText("Tipo de identificación:");
 

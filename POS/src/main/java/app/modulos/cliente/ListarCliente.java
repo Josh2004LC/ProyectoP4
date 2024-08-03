@@ -17,9 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListarCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListarClient
-     */
+    String estadoMet;
     public ListarCliente() {
         initComponents();
         this.CargarTabla();
@@ -44,6 +42,7 @@ public class ListarCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setText("Buscar:");
 
@@ -198,12 +197,12 @@ public class ListarCliente extends javax.swing.JInternalFrame {
     }
     
     private String ObtenerEstado(int estado) {
-        if (estado == 1) {
-            return "Activo";
-        } else {
-            return "Inactivo";
-        }
+    if (estado == 1) {
+        return "Activo";
+    } else {
+        return "Inactivo";
     }
+}
     
     private void Buscar() {
         // Obtener el valor del buscador.

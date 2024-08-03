@@ -41,7 +41,7 @@ public class LTipoUsuario {
                 con.Disconnect();
             }
         } catch (Exception ex) {
-            Logger.getLogger(LTipoIdentificacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LTipoUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tipos;
     }
@@ -66,7 +66,7 @@ public class LTipoUsuario {
                 con.Disconnect();
             }
         } catch (Exception ex) {
-            Logger.getLogger(LTipoIdentificacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LTipoUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return respuesta;
     }

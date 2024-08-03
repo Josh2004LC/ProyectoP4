@@ -41,8 +41,8 @@ public class Marca {
         
     }
     
-    public Marca(int idMarca){
-        this.idMarca = idMarca;
+    public Marca(String nombre){
+        this.nombre = nombre;
     }
     
      public Marca(int idMarca, String nombre){
@@ -50,7 +50,7 @@ public class Marca {
         this.nombre = nombre;
     }
     
-    public Marca(int idMarca, String nombreM, int estado){
+    public Marca(int idMarca, String nombre, int estado){
         this.idMarca = idMarca;
         this.nombre = nombre;
         this.estado = estado;

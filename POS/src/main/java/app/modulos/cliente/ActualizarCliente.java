@@ -9,7 +9,6 @@ import app.pos.entities.TipoIdentificacion;
 import app.pos.logica.LCliente;
 import app.pos.logica.LTipoIdentificacion;
 import java.awt.Cursor;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -26,7 +25,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
     public ActualizarCliente() {
         initComponents();
         CargarTipoIdentificacion();
-        ObtenerEstado();
         CargarEstado();
         this.cliente = null;
     }
@@ -72,7 +70,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
         lbTituloFormulario = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lbRequeridoTipoIdentificacion1 = new javax.swing.JLabel();
-        lbRequeridoTipoIdentificacion2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         lbApellidos = new javax.swing.JLabel();
         lbRequeridoTipoIdentificacion3 = new javax.swing.JLabel();
@@ -95,6 +92,7 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
         lbRequeridoTipoIdentificacion7 = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
 
         lbTipoIdentificacion.setText("Tipo de identificación:");
 
@@ -118,9 +116,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
 
         lbRequeridoTipoIdentificacion1.setForeground(new java.awt.Color(255, 0, 0));
         lbRequeridoTipoIdentificacion1.setText("*");
-
-        lbRequeridoTipoIdentificacion2.setForeground(new java.awt.Color(255, 0, 0));
-        lbRequeridoTipoIdentificacion2.setText("*");
 
         txtNombre.setEditable(false);
 
@@ -177,7 +172,7 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
 
         txtIdentificacion.setEditable(false);
         try {
-            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -196,6 +191,11 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
         });
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el estado del cliente" }));
+        cbxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEstadoActionPerformed(evt);
+            }
+        });
 
         try {
             txtIdentificacionBuscar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
@@ -256,11 +256,7 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lbRequeridoTipoIdentificacion7)
                                         .addGap(18, 18, 18)
-                                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                                .addGap(235, 235, 235)
-                                                .addComponent(lbRequeridoTipoIdentificacion2))))
+                                        .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelFormularioLayout.createSequentialGroup()
                                         .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(panelFormularioLayout.createSequentialGroup()
@@ -274,7 +270,8 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
                                         .addGap(41, 41, 41)
                                         .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                            .addComponent(txtCorreo)))))
+                                            .addComponent(txtCorreo))))
+                                .addGap(23, 23, 23))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
                                 .addComponent(btnGuardar)
                                 .addGap(18, 18, 18)
@@ -310,7 +307,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
                     .addComponent(cbxTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbIdentificacion)
                     .addComponent(lbRequeridoTipoIdentificacion)
-                    .addComponent(lbRequeridoTipoIdentificacion2)
                     .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbRequeridoTipoIdentificacion7))
                 .addGap(18, 18, 18)
@@ -366,10 +362,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
         this.Buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdentificacionActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (this.cbxTipoIdentificacion.getSelectedItem() == null || this.cbxTipoIdentificacion.getSelectedItem().toString().equals("Seleccione un tipo de identificación")) {
             JOptionPane.showMessageDialog(this, "El tipo de identificación es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -407,22 +399,22 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (this.cbxEstado.getSelectedItem() == null || this.cbxTipoIdentificacion.getSelectedItem().toString().equals("Seleccione el estado del cliente")) {
+        if (this.cbxEstado.getSelectedItem() == null || this.cbxEstado.getSelectedItem().toString().equals("Seleccione el estado del cliente")) {
             JOptionPane.showMessageDialog(this, "El estado es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             this.cbxEstado.requestFocus();
             return;
         }
 
         int operacion = new LCliente().Actualizar(new Cliente(
-            cliente.getIdCliente(),
-            cliente.getIdPersona(),
-            this.ObtenerEstado(),
-            this.txtIdentificacion.getText().trim(),
-            this.txtNombre.getText().trim(),
-            this.txtApellidos.getText().trim(),
-            this.txtCorreo.getText().trim(),
-            this.txtTelefono.getText().trim(),
-            this.tipo
+                cliente.getIdCliente(),
+                cliente.getIdPersona(),
+                this.ObtenerEstado(),
+                this.txtIdentificacion.getText().trim(),
+                this.txtNombre.getText().trim(),
+                this.txtApellidos.getText().trim(),
+                this.txtCorreo.getText().trim(),
+                this.txtTelefono.getText().trim(),
+                this.tipo
         ));
 
         if (operacion > 0) {
@@ -430,7 +422,7 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
             this.LimpiarFormulario();
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo completar la actualización del cliente,"
-                + " intente nuevamente, verifique que exista el cliente ingresado.", "Aviso", JOptionPane.ERROR_MESSAGE);
+                    + " intente nuevamente, verifique que exista el cliente ingresado.", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -442,18 +434,26 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
         this.tipo = this.tiposIdentificacion.stream().filter(x -> x.getNombre().equals(this.cbxTipoIdentificacion.getSelectedItem().toString())).findFirst().orElse(null);
     }//GEN-LAST:event_cbxTipoIdentificacionActionPerformed
 
+    private void cbxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxEstadoActionPerformed
+
+    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentificacionActionPerformed
+
     private void Buscar() {
         if (this.txtIdentificacionBuscar.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "La identificación es requerida.", "Aviso", JOptionPane.WARNING_MESSAGE);
             this.txtIdentificacionBuscar.requestFocus();
             return;
         }
-        
+
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         this.cliente = new LCliente().Consultar(this.txtIdentificacionBuscar.getText().trim());
-        if (this.cliente != null && this.cliente.getIdCliente()> 0) {
+        if (this.cliente != null && this.cliente.getIdCliente() > 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            
+
             this.cbxTipoIdentificacion.setSelectedItem(this.cliente.getTipoIdentificacion().getNombre());
             this.cbxTipoIdentificacion.setEditable(true);
             this.txtIdentificacion.setText(this.cliente.getIdentificacion());
@@ -474,9 +474,12 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
             this.txtIdentificacionBuscar.requestFocus();
         }
     }
-        private void LimpiarFormulario() {
+
+    private void LimpiarFormulario() {
         this.cbxTipoIdentificacion.setSelectedIndex(0);
         this.cbxTipoIdentificacion.setEditable(false);
+        this.cbxEstado.setSelectedIndex(0);
+        this.cbxEstado.setEditable(false);
         this.txtIdentificacion.setText("");
         this.txtIdentificacion.setEditable(false);
         this.txtNombre.setText("");
@@ -504,7 +507,6 @@ public class ActualizarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbProfesion;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion1;
-    private javax.swing.JLabel lbRequeridoTipoIdentificacion2;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion3;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion4;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion5;

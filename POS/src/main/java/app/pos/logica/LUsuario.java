@@ -57,7 +57,7 @@ public class LUsuario {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuarios;
     }
@@ -99,7 +99,7 @@ public class LUsuario {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuario;
     }
@@ -141,7 +141,7 @@ public class LUsuario {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuario;
     }
@@ -166,7 +166,7 @@ public class LUsuario {
             }
             return 0;
         } catch (Exception ex) {
-            Logger.getLogger(LCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }
@@ -192,7 +192,7 @@ public class LUsuario {
             }
             return 0;
         } catch (Exception ex) {
-            Logger.getLogger(LCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }

@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package app.modulos.producto;
+package app.modulos.marca;
 
+import app.pos.entities.Marca;
 import app.pos.entities.Producto;
-import app.pos.entities.TipoIdentificacion;
+import app.pos.logica.LMarca;
 import app.pos.logica.LProducto;
-import app.pos.logica.LTipoIdentificacion;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,80 +18,56 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Josh
  */
-public class ListarProducto extends javax.swing.JInternalFrame {
+public class ListarMarca extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ListarProducto
+     * Creates new form ListarMarca
      */
-    public ListarProducto() {
+    public ListarMarca() {
         initComponents();
         this.CargarTabla();
     }
 
     private void CargarTabla() {
-        ArrayList<Producto> productos = new LProducto().Listar();
+        ArrayList<Marca> marcas = new LMarca().Listar();
 
         String[] columnas = new String[]{
-            "ID PRODUCTO",
             "ID MARCA",
-            "MARCA",
-            "CODIGO",
             "NOMBRE",
-            "CANTIDAD",
-            "PRECIO",
-            "DESCRIPCION",
             "ESTADO",};
 
         DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
 
-        for (Producto producto : productos) {
+        for (Marca marca : marcas) {
             obModelo.addRow(new Object[]{
-                producto.getIdProducto() + "",
-                producto.getMarca().getIdMarca() + "",
-                producto.getMarca().getNombre(),
-                producto.getCodigo(),
-                producto.getNombre(),
-                producto.getCantidad(),
-                producto.getPrecio(),
-                producto.getDescripcion(),
-                this.ObtenerEstado(producto.getEstado())
-
+                marca.getIdMarca() + "",
+                marca.getNombre(),
+                this.ObtenerEstado(marca.getEstado())
+            
             });
         }
 
-        this.tbProductos.setModel(obModelo);
+        this.tbMarcas.setModel(obModelo);
     }
 
-    private void CargarTabla(ArrayList<Producto> productos) {
+    private void CargarTabla(ArrayList<Marca> marcas) {
         String[] columnas = new String[]{
-            "ID PRODUCTO",
             "ID MARCA",
-            "MARCA",
-            "CODIGO",
             "NOMBRE",
-            "CANTIDAD",
-            "PRECIO",
-            "DESCRIPCION",
             "ESTADO",};
 
         DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
 
-        for (Producto producto : productos) {
+        for (Marca marca : marcas) {
             obModelo.addRow(new Object[]{
-                producto.getIdProducto() + "",
-                producto.getMarca().getIdMarca() + "",
-                producto.getMarca().getNombre(),
-                producto.getCodigo(),
-                producto.getNombre(),
-                producto.getCantidad(),
-                producto.getPrecio(),
-                producto.getDescripcion(),
-                this.ObtenerEstado(producto.getEstado())
+                marca.getIdMarca() + "",
+                marca.getNombre(),
+                this.ObtenerEstado(marca.getEstado())
 
             });
         }
 
-        this.tbProductos.setModel(obModelo);
+        this.tbMarcas.setModel(obModelo);
     }
 
     private String ObtenerEstado(int estado) {
@@ -109,18 +85,17 @@ public class ListarProducto extends javax.swing.JInternalFrame {
         // Validar el texto a buscar
         if (!valor.isEmpty() && !valor.isBlank()) {
             // Cargar tipos identificacion
-            ArrayList<Producto> productos = new LProducto().Listar();
+            ArrayList<Marca> marcas = new LMarca().Listar();
 
-            if (productos != null && !productos.isEmpty()) {
-                List<Producto> finales = productos.stream()
-                        .filter(emp -> (emp.getIdProducto() + "").contains(valor)
+            if (marcas != null && !marcas.isEmpty()) {
+                List<Marca> finales = marcas.stream()
+                        .filter(emp -> (emp.getIdMarca() + "").contains(valor)
                         || emp.getNombre().trim().toLowerCase().contains(valor)
-                        || emp.getCodigo().trim().toLowerCase().contains(valor)
-                        || emp.getDescripcion().trim().toLowerCase().contains(valor)
                         ).collect(Collectors.toList());
 
-                this.CargarTabla((ArrayList<Producto>) finales);
+                this.CargarTabla((ArrayList<Marca>) finales);
             }
+
         }
     }
 
@@ -134,7 +109,7 @@ public class ListarProducto extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbProductos = new javax.swing.JTable();
+        tbMarcas = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -169,7 +144,7 @@ public class ListarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
+        tbMarcas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -180,11 +155,11 @@ public class ListarProducto extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tbProductos.setEnabled(false);
-        tbProductos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tbProductos.setShowGrid(true);
-        tbProductos.setSurrendersFocusOnKeystroke(true);
-        jScrollPane1.setViewportView(tbProductos);
+        tbMarcas.setEnabled(false);
+        tbMarcas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbMarcas.setShowGrid(true);
+        tbMarcas.setSurrendersFocusOnKeystroke(true);
+        jScrollPane1.setViewportView(tbMarcas);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -274,7 +249,7 @@ public class ListarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbBuscar;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tbProductos;
+    private javax.swing.JTable tbMarcas;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
