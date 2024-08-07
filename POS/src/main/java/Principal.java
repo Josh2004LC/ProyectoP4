@@ -2,6 +2,7 @@
 import app.modulos.cliente.ActualizarCliente;
 import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
+import app.modulos.factura.ListarFactura;
 import app.modulos.marca.ActualizarMarca;
 import app.modulos.marca.GuardarMarca;
 import app.modulos.marca.ListarMarca;
@@ -64,8 +65,8 @@ public class Principal extends javax.swing.JFrame {
         marcasMenuItem = new javax.swing.JMenuItem();
         agregarMarcaMenuItem = new javax.swing.JMenuItem();
         actualizarMarcaMenuItem = new javax.swing.JMenuItem();
-        mEstudiante = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
+        mFactura = new javax.swing.JMenu();
+        guardarFacturaItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
         mClientes = new javax.swing.JMenu();
         mRegistrarCliente = new javax.swing.JMenuItem();
@@ -191,20 +192,25 @@ public class Principal extends javax.swing.JFrame {
 
         menuBar.add(mInventario);
 
-        mEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-user-account-16.png"))); // NOI18N
-        mEstudiante.setMnemonic('h');
-        mEstudiante.setText("Estudiantes");
-        mEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-user-account-16.png"))); // NOI18N
+        mFactura.setMnemonic('h');
+        mFactura.setText(" Facturas");
+        mFactura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        mEstudiante.add(contentMenuItem);
+        guardarFacturaItem.setMnemonic('c');
+        guardarFacturaItem.setText("Generar Factura");
+        mFactura.add(guardarFacturaItem);
 
         aboutMenuItem.setMnemonic('a');
         aboutMenuItem.setText("About");
-        mEstudiante.add(aboutMenuItem);
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        mFactura.add(aboutMenuItem);
 
-        menuBar.add(mEstudiante);
+        menuBar.add(mFactura);
 
         mClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-administrator-male-16.png"))); // NOI18N
         mClientes.setText("Clientes");
@@ -374,6 +380,16 @@ public class Principal extends javax.swing.JFrame {
         myForm.show();
     }//GEN-LAST:event_actualizarProductoMenuItemActionPerformed
 
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+         ListarFactura myForm = new ListarFactura();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,12 +409,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem actualizarProductoMenuItem;
     private javax.swing.JMenuItem agregarMarcaMenuItem;
     private javax.swing.JMenuItem agregarProductoMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenuItem guardarFacturaItem;
     private javax.swing.JMenuItem mActualizarCliente;
     private javax.swing.JMenuItem mActualizarUsuario;
     private javax.swing.JMenu mClientes;
-    private javax.swing.JMenu mEstudiante;
+    private javax.swing.JMenu mFactura;
     private javax.swing.JMenu mInicio;
     private javax.swing.JMenu mInventario;
     private javax.swing.JMenuItem mListarClientes;

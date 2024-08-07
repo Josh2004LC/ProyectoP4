@@ -2,22 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package app.modulos.cliente;
+package app.modulos.factura;
 
-import app.pos.entities.Cliente;
-import app.pos.logica.LCliente;
+import app.pos.entities.LineaFactura;
+import app.pos.logica.LLineaFactura;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Josh
  */
-public class ListarCliente extends javax.swing.JInternalFrame {
+public class ListarFactura extends javax.swing.JInternalFrame {
 
-    public ListarCliente() {
+    /**
+     * Creates new form ListarFactura
+     */
+    public ListarFactura() {
         initComponents();
         this.CargarTabla();
     }
@@ -37,11 +38,9 @@ public class ListarCliente extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbClientes = new javax.swing.JTable();
+        tbLineas = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
 
         jLabel1.setText("Buscar:");
 
@@ -61,7 +60,7 @@ public class ListarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tbLineas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -72,7 +71,7 @@ public class ListarCliente extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbClientes);
+        jScrollPane1.setViewportView(tbLineas);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -120,8 +119,6 @@ public class ListarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("Lista de clientes registrados");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,103 +128,65 @@ public class ListarCliente extends javax.swing.JInternalFrame {
         this.CargarTabla();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    
+    private void CargarTabla() {
+        ArrayList<LineaFactura> lineas = new LLineaFactura().Listar();
+        
+        String[] columnas = new String[]{
+            "CODIGO",
+            "DESCRIPCIÓN",
+            "CANTIDAD",
+            "PRECIO",
+            "TOTAL"
+        };
+        
+        DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
+        
+        for (LineaFactura linea : lineas) {
+            obModelo.addRow(new Object[]{
+                linea.getCodigo(),
+                linea.getDescripcion(),
+                linea.getCantidad(),
+                linea.getPrecio(),
+                linea.getTotal()
+            });
+        }
+        
+        this.tbLineas.setModel(obModelo);
+    }
+    
+    private void CargarTabla(ArrayList<LineaFactura> lineas) {
+        String[] columnas = new String[]{
+           "CODIGO",
+            "DESCRIPCIÓN",
+            "CANTIDAD",
+            "PRECIO",
+            "TOTAL"
+        };
+        
+        DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
+        
+        for (LineaFactura linea : lineas) {
+            obModelo.addRow(new Object[]{
+                linea.getCodigo(),
+                linea.getDescripcion(),
+                linea.getCantidad(),
+                linea.getPrecio(),
+                linea.getTotal()
+            });
+        }
+        
+        this.tbLineas.setModel(obModelo);
+        
+    }
+  
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        this.Buscar();
-        this.txtBuscar.requestFocus();
+
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void CargarTabla() {
-        ArrayList<Cliente> clientes = new LCliente().Listar();
-        
-        String[] columnas = new String[]{
-            "ID",
-            "Tipo Identificación",
-            "Identificación",
-            "Nombre",
-            "Correo",
-            "Teléfono",
-            "Estado"
-        };
-        
-        DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
-        
-        for (Cliente cliente : clientes) {
-            obModelo.addRow(new Object[]{
-                cliente.getIdCliente()+ "",
-                cliente.getTipoIdentificacion().getNombre(),
-                cliente.getIdentificacion(),
-                cliente.getNombre() + " " + cliente.getApellidos(),
-                cliente.getCorreo(),
-                cliente.getTelefono(),
-                this.ObtenerEstado(cliente.getEstado())
-            });
-        }
-        
-        this.tbClientes.setModel(obModelo);
-    }
     
-    private void CargarTabla(ArrayList<Cliente> clientes) {
-        String[] columnas = new String[]{
-            "ID",
-            "Tipo Identificación",
-            "Identificación",
-            "Nombre",
-            "Correo",
-            "Teléfono",
-            "Estado"
-        };
-        
-        DefaultTableModel obModelo = new DefaultTableModel(columnas, 0);
-        
-        for (Cliente cliente : clientes) {
-            obModelo.addRow(new Object[]{
-                cliente.getIdCliente()+ "",
-                cliente.getTipoIdentificacion().getIdTipoIdentificacion(),
-                cliente.getIdentificacion(),
-                cliente.getNombre() + " " + cliente.getApellidos(),
-                cliente.getCorreo(),
-                cliente.getTelefono(),
-                this.ObtenerEstado(cliente.getEstado())
-            });
-        }
-        
-        this.tbClientes.setModel(obModelo);
-        
-    }
-    
-    private String ObtenerEstado(int estado) {
-    if (estado == 1) {
-        return "Activo";
-    } else {
-        return "Inactivo";
-    }
-}
-    
-    private void Buscar() {
-        // Obtener el valor del buscador.
-        String valor = this.txtBuscar.getText().trim().toLowerCase();
-
-        // Validar el texto a buscar
-        if (!valor.isEmpty() && !valor.isBlank()) {
-            // Cargar empleados
-            ArrayList<Cliente> clientes = new LCliente().Listar();
-
-            if (clientes != null && !clientes.isEmpty()) {
-                List<Cliente> finales = clientes.stream()
-                        .filter(emp -> (emp.getIdCliente()+ "").contains(valor)
-                        || emp.getTipoIdentificacion().getNombre().trim().toLowerCase().contains(valor)
-                        || emp.getIdentificacion().trim().toLowerCase().contains(valor)
-                        || emp.getNombre().trim().toLowerCase().contains(valor)
-                        || emp.getApellidos().trim().toLowerCase().contains(valor)
-                        || emp.getTelefono().trim().toLowerCase().contains(valor)
-                        || emp.getCorreo().trim().toLowerCase().contains(valor)
-                        || (emp.getEstado()+ "").contains(valor)
-                        ).collect(Collectors.toList());
-
-                this.CargarTabla((ArrayList<Cliente>) finales);
-            }
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -235,7 +194,7 @@ public class ListarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tbClientes;
+    private javax.swing.JTable tbLineas;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
