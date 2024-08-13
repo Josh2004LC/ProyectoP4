@@ -2,6 +2,7 @@
 import app.modulos.cliente.ActualizarCliente;
 import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
+import app.modulos.factura.GuardarFactura;
 import app.modulos.factura.ListarFactura;
 import app.modulos.marca.ActualizarMarca;
 import app.modulos.marca.GuardarMarca;
@@ -199,6 +200,11 @@ public class Principal extends javax.swing.JFrame {
 
         guardarFacturaItem.setMnemonic('c');
         guardarFacturaItem.setText("Generar Factura");
+        guardarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarFacturaItemActionPerformed(evt);
+            }
+        });
         mFactura.add(guardarFacturaItem);
 
         aboutMenuItem.setMnemonic('a');
@@ -389,6 +395,16 @@ public class Principal extends javax.swing.JFrame {
         this.panelPrincipal.add(myForm);
         myForm.show();
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void guardarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarFacturaItemActionPerformed
+        GuardarFactura myForm = new GuardarFactura();
+        myForm.setLocation(
+                (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
+                (panelPrincipal.getSize().height - myForm.getSize().height) / 2
+        );
+        this.panelPrincipal.add(myForm);
+        myForm.show();
+    }//GEN-LAST:event_guardarFacturaItemActionPerformed
 
     /**
      * @param args the command line arguments

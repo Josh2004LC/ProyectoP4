@@ -11,9 +11,10 @@ package app.pos.entities;
 public class LineaFactura {
 
     private int idLineaFactura;
+    private int idProducto;
     private int idFactura;
-    private String codigo;
     private String descripcion;
+    private String codigo;
     private Double cantidad;
     private Double precio;
     private Double total;
@@ -26,6 +27,14 @@ public class LineaFactura {
         this.idLineaFactura = idLineaFactura;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     public int getIdFactura() {
         return idFactura;
     }
@@ -34,20 +43,21 @@ public class LineaFactura {
         this.idFactura = idFactura;
     }
 
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    
     public String getCodigo() {
         return codigo;
     }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public Double getCantidad() {
@@ -82,10 +92,12 @@ public class LineaFactura {
         this.idFactura = idFactura;
     }
 
-    public LineaFactura(int idLineaFactura, int idFactura, String codigo, String descripcion,
-            Double cantidad, Double precio, Double total) {
+    public LineaFactura(int idLineaFactura,int idProducto, int idFactura,
+            Double cantidad, Double precio, Double total, String codigo, String descripcion) {
         this.idLineaFactura = idLineaFactura;
+        this.idProducto = idProducto;
         this.idFactura = idFactura;
+        this.cantidad = cantidad;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -93,8 +105,8 @@ public class LineaFactura {
 
     }
 
-    public LineaFactura(int idFactura, String codigo, String descripcion,
-            Double cantidad, Double precio, Double total) {
+    public LineaFactura(int idFactura, String codigo, String descripcion, Double cantidad, 
+            Double precio, Double total) {
         this.idFactura = idFactura;
         this.codigo = codigo;
         this.cantidad = cantidad;

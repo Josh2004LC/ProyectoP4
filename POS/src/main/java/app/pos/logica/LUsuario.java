@@ -151,6 +151,7 @@ public class LUsuario {
             ConnectionManager con = new ConnectionManager();
             if (con.Connect()) {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
+                parametros.add(new Parametro<>("p_id_usuario", usuario.getIdUsuario(), Types.INTEGER));
                 parametros.add(new Parametro<>("p_id_tipo_identificacion", usuario.getTipoIdentificacion().getIdTipoIdentificacion(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_identificacion", usuario.getIdentificacion(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_nombre", usuario.getNombre(), Types.VARCHAR));
@@ -162,7 +163,7 @@ public class LUsuario {
                 parametros.add(new Parametro<>("p_passwordd", usuario.getPasswordd(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_estado", usuario.getEstado(), Types.VARCHAR));
                 parametros.add(new Parametro<>("p_respuesta", null, Types.INTEGER, true));
-                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_guardar_usuario(?,?,?,?,?,?,?,?,?,?,?)}", parametros);
+                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_guardar_usuario(?,?,?,?,?,?,?,?,?,?,?,?)}", parametros);
             }
             return 0;
         } catch (Exception ex) {

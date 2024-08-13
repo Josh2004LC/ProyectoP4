@@ -61,6 +61,7 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
         this.txtTelefono.setText("");
         this.txtUsuario.setText("");
         this.txtContrasena.setText("");
+        this.txtIdUsuario.setText("");
 
     }
     
@@ -104,6 +105,9 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
         lbTipoIdentificacion1 = new javax.swing.JLabel();
         lbRequeridoTipoIdentificacion8 = new javax.swing.JLabel();
         cbxTipoUsuario = new javax.swing.JComboBox();
+        lbApellidos2 = new javax.swing.JLabel();
+        lbRequeridoTipoIdentificacion9 = new javax.swing.JLabel();
+        txtIdUsuario = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -202,78 +206,81 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        lbApellidos2.setText("ID Interno");
+
+        lbRequeridoTipoIdentificacion9.setForeground(new java.awt.Color(255, 0, 0));
+        lbRequeridoTipoIdentificacion9.setText("*");
+
         javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
         panelFormularioLayout.setHorizontalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormularioLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbTituloFormulario)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                            .addComponent(lbTipoIdentificacion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbRequeridoTipoIdentificacion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbRequeridoTipoIdentificacion1)
+                            .addGap(76, 76, 76)))
                     .addGroup(panelFormularioLayout.createSequentialGroup()
-                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormularioLayout.createSequentialGroup()
-                                .addComponent(btnGuardar)
-                                .addGap(37, 37, 37)
-                                .addComponent(btnLimpiar))
+                                .addComponent(lbTelefono)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion4))
                             .addGroup(panelFormularioLayout.createSequentialGroup()
-                                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
-                                            .addComponent(lbTipoIdentificacion)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lbRequeridoTipoIdentificacion)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lbRequeridoTipoIdentificacion1)
-                                            .addGap(76, 76, 76)))
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion6))
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addComponent(lbTipoIdentificacion1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbxTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre)
+                    .addComponent(txtTelefono)
+                    .addComponent(txtUsuario)
+                    .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(lbCorreo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion5))
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(lbApellidos1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion7))
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbIdentificacion)
                                     .addGroup(panelFormularioLayout.createSequentialGroup()
-                                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                                .addComponent(lbTelefono)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbRequeridoTipoIdentificacion4))
-                                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbRequeridoTipoIdentificacion6))
-                                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                                .addComponent(lbTipoIdentificacion1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbRequeridoTipoIdentificacion8)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbxTipoIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtTelefono)
-                                    .addComponent(txtUsuario)
-                                    .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelFormularioLayout.createSequentialGroup()
-                                        .addGap(69, 69, 69)
-                                        .addComponent(lbCorreo)
+                                        .addComponent(lbApellidos)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbRequeridoTipoIdentificacion5))
-                                    .addGroup(panelFormularioLayout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(lbApellidos1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbRequeridoTipoIdentificacion7))
-                                    .addGroup(panelFormularioLayout.createSequentialGroup()
-                                        .addGap(69, 69, 69)
-                                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lbIdentificacion)
-                                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                                .addComponent(lbApellidos)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbRequeridoTipoIdentificacion3)
-                                                .addGap(12, 12, 12)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbRequeridoTipoIdentificacion2)))
-                                .addGap(16, 16, 16)))
-                        .addGap(1, 1, 1)))
+                                        .addComponent(lbRequeridoTipoIdentificacion3)
+                                        .addGap(12, 12, 12)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRequeridoTipoIdentificacion2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE))
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(lbApellidos2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRequeridoTipoIdentificacion9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)))
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelFormularioLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -283,8 +290,21 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
                             .addComponent(txtIdentificacion, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(panelFormularioLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(txtContrasena)))
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdUsuario)
+                            .addComponent(txtContrasena))))
                 .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                        .addComponent(lbTituloFormulario)
+                        .addGap(275, 275, 275))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnLimpiar)
+                        .addGap(287, 287, 287))))
         );
         panelFormularioLayout.setVerticalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,13 +348,17 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbTipoIdentificacion1)
-                        .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbApellidos2)
+                            .addComponent(lbRequeridoTipoIdentificacion9)))
                     .addComponent(lbRequeridoTipoIdentificacion8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar)
                     .addComponent(btnLimpiar))
-                .addGap(54, 54, 54))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -415,14 +439,22 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
             return;
         }
         
+        if (this.txtIdUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "El id es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            this.txtIdUsuario.requestFocus();
+            return;
+        }
+        
         if (this.cbxTipoUsuario.getSelectedItem() == null || this.cbxTipoUsuario.getSelectedItem().toString().equals("Seleccione un tipo de usuario")) {
             JOptionPane.showMessageDialog(this, "El tipo de usuario es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             this.cbxTipoUsuario.requestFocus();
             return;
         }
 
+        int idUsuario = Integer.parseInt(this.txtIdUsuario.getText());
+
         int operacion = new LUsuario().Guardar(new Usuario(
-            0,
+            idUsuario,
             0,
             this.tipoU,
             this.txtUsuario.getText().trim(),
@@ -460,6 +492,7 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lbApellidos;
     private javax.swing.JLabel lbApellidos1;
+    private javax.swing.JLabel lbApellidos2;
     private javax.swing.JLabel lbCorreo;
     private javax.swing.JLabel lbIdentificacion;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion;
@@ -471,6 +504,7 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbRequeridoTipoIdentificacion6;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion7;
     private javax.swing.JLabel lbRequeridoTipoIdentificacion8;
+    private javax.swing.JLabel lbRequeridoTipoIdentificacion9;
     private javax.swing.JLabel lbTelefono;
     private javax.swing.JLabel lbTipoIdentificacion;
     private javax.swing.JLabel lbTipoIdentificacion1;
@@ -479,6 +513,7 @@ public class GuardarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JFormattedTextField txtIdentificacion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JFormattedTextField txtTelefono;

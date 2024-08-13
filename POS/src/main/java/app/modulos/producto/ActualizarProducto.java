@@ -450,7 +450,7 @@ public class ActualizarProducto extends javax.swing.JInternalFrame {
             this.btnGuardar.setEnabled(true);
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            JOptionPane.showMessageDialog(this, "No se encontró el cliente con ese codigo.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontró el producto con ese codigo.", "Aviso", JOptionPane.ERROR_MESSAGE);
             this.txtCodigoBuscar.requestFocus();
         }
     }
