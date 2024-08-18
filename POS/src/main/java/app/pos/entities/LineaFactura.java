@@ -92,19 +92,29 @@ public class LineaFactura {
         this.idFactura = idFactura;
     }
 
-    public LineaFactura(int idLineaFactura,int idProducto, int idFactura,
-            Double cantidad, Double precio, Double total, String codigo, String descripcion) {
+    public LineaFactura(int idLineaFactura,int idProducto, int idFactura, String codigo,
+            Double cantidad, Double precio, Double total) {
         this.idLineaFactura = idLineaFactura;
         this.idProducto = idProducto;
         this.idFactura = idFactura;
         this.cantidad = cantidad;
         this.codigo = codigo;
-        this.descripcion = descripcion;
         this.precio = precio;
         this.total = total;
 
     }
 
+    public LineaFactura(int idProducto, int idFactura, String codigo, Double cantidad, Double precio, 
+            Double total) {
+        this.idProducto = idProducto;
+        this.idFactura = idFactura;
+        this.cantidad = cantidad;
+        this.codigo = codigo;
+        this.precio = precio;
+        this.total = total;
+
+    }
+    
     public LineaFactura(int idFactura, String codigo, String descripcion, Double cantidad, 
             Double precio, Double total) {
         this.idFactura = idFactura;

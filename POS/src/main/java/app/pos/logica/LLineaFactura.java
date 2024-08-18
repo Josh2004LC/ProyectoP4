@@ -22,7 +22,8 @@ import java.util.logging.Logger;
  * @author Josh
  */
 public class LLineaFactura {
-     public ArrayList<LineaFactura> Listar() {
+
+    public ArrayList<LineaFactura> Listar() {
         ArrayList<LineaFactura> lineas = new ArrayList<>();
         try {
             ConnectionManager con = new ConnectionManager();
@@ -43,142 +44,77 @@ public class LLineaFactura {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineas;
     }
 
-    public Usuario Consultar(int idUsuario) {
-        Usuario usuario = null;
+    public LineaFactura Consultar(int idFactura) {
+        LineaFactura linea = null;
         try {
             ConnectionManager con = new ConnectionManager();
             if (con.Connect()) {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
-                parametros.add(new Parametro<>("p_id_usuario", idUsuario, Types.INTEGER));
+                parametros.add(new Parametro<>("p_id_factura", idFactura, Types.INTEGER));
                 parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
-                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_usuario(?,?)}", parametros)) {
+                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_linea_factura(?,?)}", parametros)) {
                     if (resultado.next()) {
-                        usuario = new Usuario(
-                                resultado.getInt("id_usuario"),
-                                resultado.getInt("id_persona"),
-                                new TipoUsuario(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("nombre"),
-                                        resultado.getInt("estado")
-                                ),
-                                resultado.getString("useraccess"),
-                                resultado.getString("password"),
-                                resultado.getInt("estado"),
-                                resultado.getString("identificacion"),
-                                resultado.getString("nombre"),
-                                resultado.getString("apellidos"),
-                                resultado.getString("correo"),
-                                resultado.getString("telefono"),
-                                new TipoIdentificacion(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("nombre"),
-                                        resultado.getString("mascara")
-                                )
-                                
+                        linea = new LineaFactura(
+                                resultado.getInt("id_factura"),
+                                resultado.getString("codigo"),
+                                resultado.getString("descripcion"),
+                                resultado.getDouble("cantidad"),
+                                resultado.getDouble("precio"),
+                                resultado.getDouble("total")
                         );
                     }
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return usuario;
+        return linea;
     }
 
-    public Usuario Consultar(String identificacion) {
-        Usuario usuario = null;
+    public int Guardar(LineaFactura linea) {
         try {
             ConnectionManager con = new ConnectionManager();
             if (con.Connect()) {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
-                parametros.add(new Parametro<>("p_identificacion", identificacion, Types.VARCHAR));
-                parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
-                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_usuario_identificacion(?,?)}", parametros)) {
-                    if (resultado.next()) {
-                        usuario = new Usuario(
-                                resultado.getInt("id_usuario"),
-                                resultado.getInt("id_persona"),
-                                new TipoUsuario(
-                                        resultado.getInt("id_tipo_usuario"),
-                                        resultado.getString("nombre"),
-                                        resultado.getInt("estado")
-                                ),
-                                resultado.getString("useraccess"),
-                                resultado.getString("password"),
-                                resultado.getInt("estado"),
-                                resultado.getString("identificacion"),
-                                resultado.getString("nombre"),
-                                resultado.getString("apellidos"),
-                                resultado.getString("correo"),
-                                resultado.getString("telefono"),
-                                new TipoIdentificacion(
-                                        resultado.getInt("id_tipo_identificacion"),
-                                        resultado.getString("nombre"),
-                                        resultado.getString("mascara")
-                                )
-                                
-                        );
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return usuario;
-    }
-
-    public int Guardar(Usuario usuario) {
-        try {
-            ConnectionManager con = new ConnectionManager();
-            if (con.Connect()) {
-                ArrayList<Parametro<?>> parametros = new ArrayList<>();
-                parametros.add(new Parametro<>("p_id_tipo_identificacion", usuario.getTipoIdentificacion().getIdTipoIdentificacion(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_identificacion", usuario.getIdentificacion(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_nombre", usuario.getNombre(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_apellidos", usuario.getApellidos(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_correo", usuario.getCorreo(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_telefono", usuario.getTelefono(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_id_tipo_usuario", usuario.getTipoUsuario().getIdTipoUsuario(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_useraccess", usuario.getUseraccess(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_passwordd", usuario.getPasswordd(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_estado", usuario.getEstado(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_id_producto", linea.getIdProducto(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_id_factura", linea.getIdFactura(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_codigo", linea.getCodigo(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_cantidad", linea.getCantidad(), Types.NUMERIC));
+                parametros.add(new Parametro<>("p_precio", linea.getPrecio(), Types.NUMERIC));
+                parametros.add(new Parametro<>("p_total", linea.getTotal(), Types.NUMERIC));
                 parametros.add(new Parametro<>("p_respuesta", null, Types.INTEGER, true));
-                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_guardar_usuario(?,?,?,?,?,?,?,?,?,?,?)}", parametros);
+                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_guardar_linea_factura(?,?,?,?,?,?,?)}", parametros);
             }
             return 0;
         } catch (Exception ex) {
-            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }
 
-    public int Actualizar(Usuario usuario) {
+    public int Actualizar(LineaFactura linea) {
         try {
             ConnectionManager con = new ConnectionManager();
             if (con.Connect()) {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
-                parametros.add(new Parametro<>("p_id_usuario", usuario.getIdUsuario(), Types.NUMERIC));
-                parametros.add(new Parametro<>("p_id_tipo_identificacion", usuario.getTipoIdentificacion().getIdTipoIdentificacion(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_identificacion", usuario.getIdentificacion(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_nombre", usuario.getNombre(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_apellidos", usuario.getApellidos(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_correo", usuario.getCorreo(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_telefono", usuario.getTelefono(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_id_tipo_usuario", usuario.getTipoUsuario().getIdTipoUsuario(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_useraccess", usuario.getUseraccess(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_passwordd", usuario.getPasswordd(), Types.VARCHAR));
-                parametros.add(new Parametro<>("p_estado", usuario.getEstado(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_id_linea_factura", linea.getIdLineaFactura(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_id_producto", linea.getIdProducto(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_id_factura", linea.getIdFactura(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_codigo", linea.getCodigo(), Types.VARCHAR));
+                parametros.add(new Parametro<>("p_cantidad", linea.getCantidad(), Types.NUMERIC));
+                parametros.add(new Parametro<>("p_precio", linea.getPrecio(), Types.NUMERIC));
+                parametros.add(new Parametro<>("p_total", linea.getTotal(), Types.NUMERIC));
                 parametros.add(new Parametro<>("p_respuesta", null, Types.INTEGER, true));
-                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_actualizar_usuario(?,?,?,?,?,?,?,?,?,?,?,?)}", parametros);
+                return con.<Integer>ExecuteCommand("{call p4proyec.pos_op.op_actualizar_linea_factura(?,?,?,?,?,?,?,?)}", parametros);
             }
             return 0;
         } catch (Exception ex) {
-            Logger.getLogger(LUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }

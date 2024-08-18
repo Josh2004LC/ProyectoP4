@@ -9,13 +9,17 @@ import oracle.jdbc.driver.OracleConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Josh
  */
 public class ConnectionManager implements IConnectionManager {
+
     private Connection connection;
 
     public ConnectionManager() {
@@ -71,13 +75,16 @@ public class ConnectionManager implements IConnectionManager {
 
             // Ejecutar el procedimiento.
             obProcedimiento.executeUpdate();
+
             // Extraer la respuesta.
             Parametro<?> respuesta = parametros.stream().filter(Parametro::isRespuesta).findAny().orElse(null);
             assert respuesta != null;
             return (T) obProcedimiento.getObject(parametros.size());
+
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
+
 }
