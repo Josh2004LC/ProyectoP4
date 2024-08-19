@@ -15,7 +15,6 @@ import app.pos.logica.LCliente;
 import app.pos.logica.LFactura;
 import app.pos.logica.LLineaFactura;
 import app.pos.logica.LLocal;
-import app.pos.logica.LMarca;
 import app.pos.logica.LProducto;
 import app.pos.logica.LUsuario;
 import java.awt.Cursor;
@@ -127,11 +126,6 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
         txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCantidadMouseClicked(evt);
-            }
-        });
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
             }
         });
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -403,10 +397,6 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
-
     private void txtVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVendedorActionPerformed
@@ -529,6 +519,7 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
     }
 
     private void guardarLineasFactura() throws ParseException {
+
         for (LineaFactura linea : lineasFactura) {
             linea.setIdFactura(idFactura);
         }
@@ -536,6 +527,11 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
         for (LineaFactura linea : lineasFactura) {
             try {
                 int operacion = new LLineaFactura().Guardar(linea);
+
+                if (operacion == -1) {
+                    JOptionPane.showMessageDialog(this, "No se pudo generar la factura,", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+                }
 
                 if (operacion > 0) {
                     System.out.println("Se completó el registro correctamente para la línea con ID Producto: " + linea.getIdProducto());
@@ -640,7 +636,7 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
     private void AgregarLinea() {
 
         if (this.txtCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "El codigo es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El código es requerido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             this.txtCodigo.requestFocus();
             return;
         }
@@ -652,35 +648,46 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
         }
 
         this.producto = new LProducto().Consultar(this.txtCodigo.getText().trim().toUpperCase());
-
+        
         if (this.producto != null && this.producto.getIdProducto() > 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            JOptionPane.showMessageDialog(this, "No se encontró el producto con ese codigo.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontró el producto con ese código.", "Aviso", JOptionPane.ERROR_MESSAGE);
             this.txtCodigo.requestFocus();
+            return;
         }
 
         double cantidad = Double.parseDouble(this.txtCantidad.getText().trim().replace(',', '.'));
         double precio = this.producto.getPrecio();
 
-        LineaFactura nuevaLinea = new LineaFactura(
-                this.producto.getIdProducto(),
-                0,
-                this.txtCodigo.getText().trim(),
-                cantidad,
-                precio,
-                precio * cantidad
-        );
-        lineasFactura.add(nuevaLinea);
+        boolean productoExistente = false;
+        for (LineaFactura linea : lineasFactura) {
+            if (linea.getCodigo().equalsIgnoreCase(this.txtCodigo.getText().trim().toUpperCase())) {
+                linea.setCantidad(linea.getCantidad() + cantidad);
+                linea.setTotal(linea.getCantidad() * precio);
+                productoExistente = true;
+                break;
+            }
+        }
+
+        if (!productoExistente) {
+            LineaFactura nuevaLinea = new LineaFactura(
+                    this.producto.getIdProducto(),
+                    0,
+                    this.txtCodigo.getText().trim().toUpperCase(),
+                    cantidad,
+                    precio,
+                    precio * cantidad
+            );
+            lineasFactura.add(nuevaLinea);
+        }
 
         this.CargarTabla();
         this.limpiar();
         this.sumarTotalLineas();
         txtCantidad.setText("1");
         this.txtCodigo.requestFocus();
-
     }
 
     private void CargarTabla() {

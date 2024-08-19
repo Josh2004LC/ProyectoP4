@@ -10,6 +10,7 @@ import app.pos.entities.LineaFactura;
 import app.pos.entities.TipoIdentificacion;
 import app.pos.entities.TipoUsuario;
 import app.pos.entities.Usuario;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -33,6 +34,7 @@ public class LLineaFactura {
                 try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_listar_linea_factura(?)}", parametros)) {
                     while (resultado.next()) {
                         lineas.add(new LineaFactura(
+                                resultado.getInt("id_linea_factura"),
                                 resultado.getInt("id_factura"),
                                 resultado.getString("codigo"),
                                 resultado.getString("descripcion"),
@@ -60,6 +62,7 @@ public class LLineaFactura {
                 try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_linea_factura(?,?)}", parametros)) {
                     if (resultado.next()) {
                         linea = new LineaFactura(
+                                resultado.getInt("id_linea_factura"),
                                 resultado.getInt("id_factura"),
                                 resultado.getString("codigo"),
                                 resultado.getString("descripcion"),
@@ -74,6 +77,62 @@ public class LLineaFactura {
             Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return linea;
+    }
+
+    public ArrayList<LineaFactura> ConsultarLineas(int idFactura) {
+        ArrayList<LineaFactura> lineas = new ArrayList<>();
+        try {
+            ConnectionManager con = new ConnectionManager();
+            if (con.Connect()) {
+                ArrayList<Parametro<?>> parametros = new ArrayList<>();
+                parametros.add(new Parametro<>("p_id_factura", idFactura, Types.INTEGER));
+                parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
+                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_linea_factura(?,?)}", parametros)) {
+                    while (resultado.next()) {
+                        LineaFactura linea = new LineaFactura(
+                                resultado.getInt("id_linea_factura"),
+                                resultado.getInt("id_factura"),
+                                resultado.getString("codigo"),
+                                resultado.getString("descripcion"),
+                                resultado.getDouble("cantidad"),
+                                resultado.getDouble("precio"),
+                                resultado.getDouble("total")
+                        );
+                        lineas.add(linea);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lineas;
+    }
+
+    
+    public String actualizarLineaFactura(int idLineaFactura, double cantidadADevolver) {
+        String resultado = "";
+        ConnectionManager con = new ConnectionManager();
+
+        if (con.Connect()) {
+            // Define la llamada al procedimiento almacenado
+            String sql = "{call p4proyec.pos_op.op_devolver_linea(?, ?, ?)}";
+            
+            ArrayList<Parametro<?>> parametros = new ArrayList<>();
+            parametros.add(new Parametro<>("p_id_linea_factura", idLineaFactura, Types.INTEGER));
+            parametros.add(new Parametro<>("p_cantidad_a_devolver", cantidadADevolver, Types.DOUBLE));
+            parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
+            
+            try (ResultSet resultadoSet = con.ExecuteCommand(sql, parametros)) {
+                if (resultadoSet.next()) {
+                    resultado = resultadoSet.getString("resultado");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LLineaFactura.class.getName()).log(Level.SEVERE, "Error en la llamada al procedimiento almacenado", ex);
+                resultado = "Error: " + ex.getMessage();
+            }
+        }
+
+        return resultado;
     }
 
     public int Guardar(LineaFactura linea) {

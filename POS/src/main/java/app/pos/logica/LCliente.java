@@ -63,7 +63,7 @@ public class LCliente {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
                 parametros.add(new Parametro<>("p_id_cliente", idCliente, Types.INTEGER));
                 parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
-                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_cliente_id(?,?)}", parametros)) {
+                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_cliente(?,?)}", parametros)) {
                     if (resultado.next()) {
                         cliente = new Cliente(
                                 resultado.getInt("id_cliente"),

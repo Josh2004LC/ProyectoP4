@@ -115,8 +115,9 @@ public class LineaFactura {
 
     }
     
-    public LineaFactura(int idFactura, String codigo, String descripcion, Double cantidad, 
+    public LineaFactura(int idLineaFactura, int idFactura, String codigo, String descripcion, Double cantidad, 
             Double precio, Double total) {
+        this.idLineaFactura = idLineaFactura;
         this.idFactura = idFactura;
         this.codigo = codigo;
         this.cantidad = cantidad;

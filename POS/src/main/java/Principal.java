@@ -2,8 +2,8 @@
 import app.modulos.cliente.ActualizarCliente;
 import app.modulos.cliente.GuardarCliente;
 import app.modulos.cliente.ListarCliente;
+import app.modulos.factura.ActualizarFactura;
 import app.modulos.factura.GuardarFactura;
-import app.modulos.factura.ListarFactura;
 import app.modulos.marca.ActualizarMarca;
 import app.modulos.marca.GuardarMarca;
 import app.modulos.marca.ListarMarca;
@@ -67,7 +67,7 @@ public class Principal extends javax.swing.JFrame {
         agregarMarcaMenuItem = new javax.swing.JMenuItem();
         actualizarMarcaMenuItem = new javax.swing.JMenuItem();
         mFactura = new javax.swing.JMenu();
-        guardarFacturaItem = new javax.swing.JMenuItem();
+        actualizarFacturaItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
         mClientes = new javax.swing.JMenu();
         mRegistrarCliente = new javax.swing.JMenuItem();
@@ -198,17 +198,17 @@ public class Principal extends javax.swing.JFrame {
         mFactura.setText(" Facturas");
         mFactura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        guardarFacturaItem.setMnemonic('c');
-        guardarFacturaItem.setText("Generar Factura");
-        guardarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
+        actualizarFacturaItem.setMnemonic('c');
+        actualizarFacturaItem.setText("Generar Factura");
+        actualizarFacturaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarFacturaItemActionPerformed(evt);
+                actualizarFacturaItemActionPerformed(evt);
             }
         });
-        mFactura.add(guardarFacturaItem);
+        mFactura.add(actualizarFacturaItem);
 
         aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
+        aboutMenuItem.setText("Actualizar Factura");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
@@ -337,7 +337,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarProductoMenuItemActionPerformed
 
     private void productosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosMenuItemActionPerformed
-       ListarProducto myForm = new ListarProducto();
+        ListarProducto myForm = new ListarProducto();
         myForm.setLocation(
                 (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
                 (panelPrincipal.getSize().height - myForm.getSize().height) / 2
@@ -377,7 +377,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_actualizarMarcaMenuItemActionPerformed
 
     private void actualizarProductoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarProductoMenuItemActionPerformed
-       ActualizarProducto myForm = new ActualizarProducto();
+        ActualizarProducto myForm = new ActualizarProducto();
         myForm.setLocation(
                 (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
                 (panelPrincipal.getSize().height - myForm.getSize().height) / 2
@@ -387,7 +387,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_actualizarProductoMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-         ListarFactura myForm = new ListarFactura();
+        ActualizarFactura myForm = new ActualizarFactura();
         myForm.setLocation(
                 (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
                 (panelPrincipal.getSize().height - myForm.getSize().height) / 2
@@ -396,7 +396,7 @@ public class Principal extends javax.swing.JFrame {
         myForm.show();
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void guardarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarFacturaItemActionPerformed
+    private void actualizarFacturaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarFacturaItemActionPerformed
         GuardarFactura myForm = new GuardarFactura();
         myForm.setLocation(
                 (panelPrincipal.getSize().width - myForm.getSize().width) / 2,
@@ -404,7 +404,7 @@ public class Principal extends javax.swing.JFrame {
         );
         this.panelPrincipal.add(myForm);
         myForm.show();
-    }//GEN-LAST:event_guardarFacturaItemActionPerformed
+    }//GEN-LAST:event_actualizarFacturaItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,12 +421,12 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem actualizarFacturaItem;
     private javax.swing.JMenuItem actualizarMarcaMenuItem;
     private javax.swing.JMenuItem actualizarProductoMenuItem;
     private javax.swing.JMenuItem agregarMarcaMenuItem;
     private javax.swing.JMenuItem agregarProductoMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenuItem guardarFacturaItem;
     private javax.swing.JMenuItem mActualizarCliente;
     private javax.swing.JMenuItem mActualizarUsuario;
     private javax.swing.JMenu mClientes;

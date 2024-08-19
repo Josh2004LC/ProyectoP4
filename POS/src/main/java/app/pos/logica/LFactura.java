@@ -59,7 +59,7 @@ public class LFactura {
                 ArrayList<Parametro<?>> parametros = new ArrayList<>();
                 parametros.add(new Parametro<>("p_id_factura", idFactura, Types.INTEGER));
                 parametros.add(new Parametro<>("p_resultado", null, Types.REF_CURSOR, true));
-                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_cliente_id(?,?)}", parametros)) {
+                try (ResultSet resultado = con.ExecuteCommand("{call p4proyec.pos_op.op_consultar_factura(?,?)}", parametros)) {
                     if (resultado.next()) {
                         factura = new Factura(
                                 resultado.getInt("id_factura"),
