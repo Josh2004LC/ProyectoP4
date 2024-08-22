@@ -435,7 +435,7 @@ public class ActualizarFactura extends javax.swing.JInternalFrame {
             if (totalFactura == 0.0) {
                 JOptionPane.showMessageDialog(this, "Se actualizó con éxito la factura" );
             } else {
-                JOptionPane.showMessageDialog(this, "Se actualizó con éxito la factura "
+                JOptionPane.showMessageDialog(this, "Se actualizó con éxito la factura " 
                     + "\nDiferencia de dinero a favor del cliente: " + diferencia );
             }
             
@@ -510,8 +510,8 @@ public class ActualizarFactura extends javax.swing.JInternalFrame {
         LLineaFactura lLineaFactura = new LLineaFactura();
         // Llamar al método actualizarLineaFactura
         String resultado = lLineaFactura.actualizarLineaFactura(idLineaFactura, cantidadADevolver);
-        // Mostrar el resultado (puedes adaptarlo según tus necesidades)
-        System.out.println("Resultado de la actualización: " + resultado);
+        // Mostrar el resultado 
+        JOptionPane.showMessageDialog(this, "Resultado de la actualización: " + resultado);
 
     }
 
@@ -527,7 +527,8 @@ public class ActualizarFactura extends javax.swing.JInternalFrame {
             this.CargarTabla(lineasFactura);
             this.lineasDeFactura = lineasFactura;
         } else {
-            System.out.println("No se encontraron líneas para la factura con ID: " + idFactura);
+            JOptionPane.showMessageDialog(this, "No se encontraron líneas para la factura # " + idFactura);
+            
         }
     }
 

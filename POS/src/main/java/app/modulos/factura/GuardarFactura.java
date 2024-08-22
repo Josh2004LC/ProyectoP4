@@ -475,6 +475,7 @@ public class GuardarFactura extends javax.swing.JInternalFrame {
 
         try {
             this.guardarFactura();
+            JOptionPane.showMessageDialog(this, "Se guardo correctamente la factura # " + idFactura);
         } catch (ParseException ex) {
             Logger.getLogger(GuardarFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
