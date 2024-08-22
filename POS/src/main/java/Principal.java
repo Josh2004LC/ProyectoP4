@@ -55,9 +55,6 @@ public class Principal extends javax.swing.JFrame {
         mInicio = new javax.swing.JMenu();
         mRegistrarUsuario = new javax.swing.JMenuItem();
         mActualizarUsuario = new javax.swing.JMenuItem();
-        opGrupo = new javax.swing.JMenuItem();
-        opPeriodo = new javax.swing.JMenuItem();
-        opCarrera = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         mInventario = new javax.swing.JMenu();
         productosMenuItem = new javax.swing.JMenuItem();
@@ -104,22 +101,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mInicio.add(mActualizarUsuario);
-
-        opGrupo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        opGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-user-groups-16.png"))); // NOI18N
-        opGrupo.setMnemonic('a');
-        opGrupo.setText("Grupos");
-        mInicio.add(opGrupo);
-
-        opPeriodo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        opPeriodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-sand-timer-16.png"))); // NOI18N
-        opPeriodo.setText("Periodos");
-        mInicio.add(opPeriodo);
-
-        opCarrera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        opCarrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-calendar-16.png"))); // NOI18N
-        opCarrera.setText("Carreras");
-        mInicio.add(opCarrera);
 
         exitMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/icons8-close-program-16.png"))); // NOI18N
@@ -272,10 +253,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
     private void mRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRegistrarClienteActionPerformed
         GuardarCliente myForm = new GuardarCliente();
         myForm.setLocation(
@@ -406,6 +383,10 @@ public class Principal extends javax.swing.JFrame {
         myForm.show();
     }//GEN-LAST:event_actualizarFacturaItemActionPerformed
 
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,9 +419,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mRegistrarUsuario;
     private javax.swing.JMenuItem marcasMenuItem;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem opCarrera;
-    private javax.swing.JMenuItem opGrupo;
-    private javax.swing.JMenuItem opPeriodo;
     private javax.swing.JDesktopPane panelPrincipal;
     private javax.swing.JMenuItem productosMenuItem;
     // End of variables declaration//GEN-END:variables
